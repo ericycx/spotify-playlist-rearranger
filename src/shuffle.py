@@ -20,14 +20,17 @@ def shuffle_helper(uid: str, length: int) -> None:
     new_order = list(range(length))
     random.shuffle(new_order)
     print(new_order)
+    print(len(new_order))
+    print(length)
     positions = list(range(length))
     for orig_idx in new_order:
         current_pos = positions.index(orig_idx)
+        print(current_pos)
         print(f"Moving track at current_pos={current_pos}")
         sp.playlist_reorder_items(uid, range_start=current_pos, insert_before=0)
         moved = positions.pop(current_pos)
         positions.insert(0, moved)
-        time.sleep(0.1)
+        time.sleep(0.5)
 
 playlists = sp.current_user_playlists()
 playlist_names = [plist['name'] for plist in playlists['items']]
