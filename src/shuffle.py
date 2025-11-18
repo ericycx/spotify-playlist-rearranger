@@ -28,15 +28,15 @@ def shuffle_helper(uid: str, length: int) -> None:
         positions.insert(0, moved)
         time.sleep(0.1)
 
-
-playlists = sp.current_user_playlists()
-playlist_names = [plist['name'] for plist in playlists['items']]
-playlist_string = ", ".join(playlist_names)
-shuffle_name = input(f"Which playlist out of {playlist_string} would you like to shuffle? ")
-if shuffle_name not in playlist_names:
-    print("Please enter a valid playlist")
-else:
-    for plist in playlists['items']:
-        if plist['name'] == shuffle_name:
-            shuffle_helper(plist["uri"],plist['tracks']['total'])
-            print(f"shuffled {shuffle_name}")
+if __name__ == "__main__":
+    playlists = sp.current_user_playlists()
+    playlist_names = [plist['name'] for plist in playlists['items']]
+    playlist_string = ", ".join(playlist_names)
+    shuffle_name = input(f"Which playlist out of {playlist_string} would you like to shuffle? ")
+    if shuffle_name not in playlist_names:
+        print("Please enter a valid playlist")
+    else:
+        for plist in playlists['items']:
+            if plist['name'] == shuffle_name:
+                shuffle_helper(plist["uri"],plist['tracks']['total'])
+                print(f"shuffled {shuffle_name}")

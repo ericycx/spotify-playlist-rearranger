@@ -1,9 +1,7 @@
 import requests
 import time
 import config
-from shuffle import shuffle_helper
-import unshuffle
-import reverse
+
 
 client_id = config.SPOTIPY_CLIENT_ID
 client_secret = config.SPOTIPY_CLIENT_SECRET
@@ -39,6 +37,4 @@ def get_artist_data(artist_URI: str) -> dict[str:object]:
     }
     response = requests.get(url, headers=headers)
     return response.json()
-
-
 
