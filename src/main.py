@@ -1,3 +1,5 @@
+import time
+
 import spotipy
 import config
 from spotipy.oauth2 import SpotifyOAuth
@@ -19,29 +21,45 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
 playlists = sp.current_user_playlists()
 playlist_names = [plist['name'] for plist in playlists['items']]
 playlist_string = ", ".join(playlist_names)
-playlist_name = input(f"Which playlist out of would you like to alter? (enter help for a list of available playlists) ")
-if playlist_name == 'help':
-    print(playlist_string)
-elif playlist_name in playlist_names:
-    for plist in playlists['items']:
-        if plist['name'] == playlist_name:
-            uri = plist["uri"]
-            length = plist['tracks']['total']
-            break
-        action = input('Would you like to shuffle, unscrambled, or reverse? (S/U/R) ')
-    if action.upper() in ("S", "SHUFFLE"):
-        shuffle.shuffle_helper(uri, length)
-        print(f"shuffled {playlist_name}")
-    elif action.upper() in ("U", "UNSCRAMBLE"):
-        unshuffle.unscramble_helper(uri, length)
-        print(f"unscrambled {playlist_name}")
-    elif action.upper() in ("R", "REVERSE"):
-        reverse.reverse_helper(uri,length)
-        print(f'reversed {playlist_name}')
+while True:
+    playlist_name = input(f"Which playlist would you like to alter? (enter list for a list of available playlists) ")
+    if playlist_name == 'list':
+        print(playlist_string)
+    elif playlist_name in playlist_names:
+        for plist in playlists['items']:
+            if plist['name'] == playlist_name:
+                uri = plist["uri"]
+                length = plist['tracks']['total']
+                break
+        while True:
+            print("Do not pause operations half way as you may end up with half-scrambled/unscrambled playlists, which would then need to be unscrambled again")
+            action = input('Would you like to shuffle, unscrambled, or reverse? (S/U/R) (help if you want more info on the operations) ')
+            if action == "help":
+                print("shuffle randomly rearranges songs in your playlist, unscramble reorders your playlist from the oldest addition to the newest addition, reverse just reverses the order of the playlist")
+                print("all changes can be viewed with your playlist set to custom order, the reordering can be viewed through the spotify app,")
+                print("but sometimes it freezes when there are too many songs in the playlist, but the reordering still works even if the songs aren't moving on the app")
+                print("viewing through the spotify website kind of works if you want to see the process")
+                time.sleep(5)
+            elif action.upper() in ("S", "SHUFFLE"):
+                shuffle.shuffle_helper(uri, length)
+                print(f"shuffled {playlist_name}")
+                break
+            elif action.upper() in ("U", "UNSCRAMBLE"):
+                print('This operation will take longer, so do not pause until the unscrambling process is completed')
+                time.sleep(1)
+                unshuffle.unscramble_helper(uri, length)
+                print(f"unscrambled {playlist_name}")
+                break
+            elif action.upper() in ("R", "REVERSE"):
+                reverse.reverse_helper(uri,length)
+                print(f'reversed {playlist_name}')
+                break
+            else:
+                print("please enter a valid operation")
+        break
+
     else:
-        print("please enter a valid operation")
-else:
-    print("please enter a valid playlist")
+        print("please enter a valid playlist")
 
 
 
