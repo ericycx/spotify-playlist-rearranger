@@ -27,18 +27,19 @@ elif playlist_name in playlist_names:
         if plist['name'] == playlist_name:
             uri = plist["uri"]
             length = plist['tracks']['total']
-            action = input('Would you like to shuffle, unscrambled, or reverse? (S/U/R) ')
-            if action.upper() == "S" or "SHUFFLE":
-                shuffle.shuffle_helper(uri, length)
-                print(f"shuffled {playlist_name}")
-            elif action.upper() == "U" or "UNSCRAMBLE":
-                unshuffle.unscramble_helper(uri, length)
-                print(f"unscrambled {playlist_name}")
-            elif action.upper() == "R" or "REVERSE":
-                reverse.reverse_helper(uri,length)
-                print(f'reversed {playlist_name}')
-            else:
-                print("please enter a valid operation")
+            break
+        action = input('Would you like to shuffle, unscrambled, or reverse? (S/U/R) ')
+    if action.upper() in ("S", "SHUFFLE"):
+        shuffle.shuffle_helper(uri, length)
+        print(f"shuffled {playlist_name}")
+    elif action.upper() in ("U", "UNSCRAMBLE"):
+        unshuffle.unscramble_helper(uri, length)
+        print(f"unscrambled {playlist_name}")
+    elif action.upper() in ("R", "REVERSE"):
+        reverse.reverse_helper(uri,length)
+        print(f'reversed {playlist_name}')
+    else:
+        print("please enter a valid operation")
 else:
     print("please enter a valid playlist")
 
