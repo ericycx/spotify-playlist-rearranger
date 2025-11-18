@@ -1,5 +1,44 @@
-.venv/
-.cache/
-.env
+# ---- Python ----
 __pycache__/
-*.pyc
+*.py[cod]
+*.so
+*.pyd
+
+# ---- Virtual environments ----
+.venv/
+venv/
+env/
+
+# ---- Environment variables ----
+.env
+*.env
+
+# ---- IDE / Editor files ----
+.vscode/
+.idea/
+
+# ---- OS files ----
+.DS_Store
+Thumbs.db
+
+# ---- Caches ----
+.cache/
+.mypy_cache/
+.pytest_cache/
+pytest_cache/
+.ipynb_checkpoints/
+
+# ---- Logs ----
+*.log
+
+# ---- Build / Packaging ----
+dist/
+build/
+*.egg-info/
+
+# ---- Jupyter ----
+*.ipynb_checkpoints
+
+# ---- Coverage ----
+htmlcov/
+.coverage
