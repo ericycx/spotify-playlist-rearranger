@@ -30,7 +30,6 @@ pip install spotipy python-dotenv python-dateutil
 2. **Set up your Spotify credentials**
 
 Create or use the .env file in the project directory and add:
-Set up your Spotify credentials
 
 SPOTIPY_CLIENT_ID=your_client_id_here
 SPOTIPY_CLIENT_SECRET=your_client_secret_here
