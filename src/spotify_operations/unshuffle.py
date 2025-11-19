@@ -1,20 +1,8 @@
-import spotipy
-from spotipy.oauth2 import SpotifyOAuth
-import config
 import time
-import json
 from dateutil import parser
+from get_spotify_client import get_spotify_client
 
-client_id = config.SPOTIPY_CLIENT_ID
-client_secret = config.SPOTIPY_CLIENT_SECRET
-redirect_uri = config.SPOTIPY_REDIRECT_URI
-
-sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
-    client_id=client_id,
-    client_secret=client_secret,
-    redirect_uri=redirect_uri,
-    scope="playlist-modify-private"
-))
+sp = get_spotify_client()
 
 def date_added_helper(uid: str, length: int) -> list:
     # Creates a list of lists, where each list has up to 100 tuples of the index and date_added of a song in the playlist.
