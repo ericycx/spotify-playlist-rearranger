@@ -48,9 +48,10 @@ no way to unscramble your playlist, I decided to try and figure out a way to rev
 
 ## Learning Outcomes and Closing Remarks
 This was my first unguided coding project, so it was interesting implementing theory I learned in my computer science classes like mergesort and api calls into something 
-actually useful and practical. Throughout this project, I struggled a lot with the correctness of my code, as I would be using the spotify application to see if it was working. The problem was that
-spotify application stops showing updates in real time after a few iterations of song shuffling, but I did not know that, which made me question the correctness of my code, as well as if my api calls were being
-limited. I would eventually find out that the playlist would update even without the playlist being updated visually, but I wasted a lot of time debugging correct code.
+actually useful and practical. I was also introduced to the chore that is reading through code documentation. Throughout this project, I struggled a lot with the correctness of my code, 
+as I would be using the spotify application to see if it was working. The problem was that spotify application stops showing updates in real time after a few iterations of song shuffling,
+but I did not know that, which made me question the correctness of my code, as well as if my api calls were being limited. I would eventually find out that the playlist would update 
+even without the playlist being updated visually, but I wasted a lot of time debugging correct code. 
 
 ## Requirements
 - Python 3.10+

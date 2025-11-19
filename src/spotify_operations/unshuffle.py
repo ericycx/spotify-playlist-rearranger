@@ -1,10 +1,7 @@
 import time
 from dateutil import parser
-from get_spotify_client import get_spotify_client
 
-sp = get_spotify_client()
-
-def date_added_helper(uid: str, length: int) -> list:
+def date_added_helper(sp, uid: str, length: int) -> list:
     # Creates a list of lists, where each list has up to 100 tuples of the index and date_added of a song in the playlist.
     # Tuples are in the form (index, date)
     date_list = []
@@ -63,8 +60,8 @@ def no_dates(lst:list) -> list:
     new_lst = [lst[i][0] for i in range(len(lst))]
     return new_lst
 
-def unscramble_helper(uid: str, length: int) -> None:
-    date_list = date_added_helper(uid,length)
+def unscramble_helper(sp, uid: str, length: int) -> None:
+    date_list = date_added_helper(sp, uid,length)
     unscrambled_index = no_dates(mergesort(date_list))
     positions = list(range(length))
     for orig_idx in unscrambled_index:
@@ -74,16 +71,3 @@ def unscramble_helper(uid: str, length: int) -> None:
         moved = positions.pop(current_pos)
         positions.insert(0, moved)
         time.sleep(0.1)
-
-if __name__ == "__main__":
-    playlists = sp.current_user_playlists()
-    playlist_names = [plist['name'] for plist in playlists['items']]
-    playlist_string = ", ".join(playlist_names)
-    shuffle_name = input(f"Which playlist out of {playlist_string} would you like to unscramble? ")
-    if shuffle_name not in playlist_names:
-        print("Please enter a valid playlist")
-    else:
-        for plist in playlists['items']:
-            if plist['name'] == shuffle_name:
-                unscramble_helper(plist["uri"],plist['tracks']['total'])
-                print(f"unscrambled {shuffle_name}")
