@@ -3,11 +3,13 @@ import shuffle
 import unshuffle
 import reverse
 from get_spotify_client import get_spotify_client
+from src.spotify_operations.get_user_playlists import get_minimal_playlists, \
+    get_user_playlists_list
 
 if __name__ == "__main__":
     sp = get_spotify_client()
-    playlists = sp.current_user_playlists()
-    playlist_names = [plist['name'] for plist in playlists['items']]
+    playlists = get_minimal_playlists(sp)
+    playlist_names = get_user_playlists_list(sp)
     playlist_string = ", ".join(playlist_names)
     while True:
         playlist_name = input(f"Which playlist would you like to alter? (enter list for a list of available playlists) ")
