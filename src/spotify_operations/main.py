@@ -16,10 +16,10 @@ if __name__ == "__main__":
         if playlist_name == 'list':
             print(playlist_string)
         elif playlist_name in playlist_names:
-            for plist in playlists['items']:
+            for plist in playlists:
                 if plist['name'] == playlist_name:
                     uri = plist["uri"]
-                    length = plist['tracks']['total']
+                    length = plist['track_count']
                     break
             while True:
                 print("Do not pause operations half way as you may end up with half-scrambled/unscrambled playlists, which would then need to be unscrambled again")
