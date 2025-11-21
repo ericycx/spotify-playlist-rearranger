@@ -1,4 +1,5 @@
 import time
+import reorder_playlist
 from dateutil import parser
 
 def date_added_helper(sp, uid: str, length: int) -> list:
@@ -62,12 +63,6 @@ def no_dates(lst:list) -> list:
 
 def unscramble_helper(sp, uid: str, length: int) -> None:
     date_list = date_added_helper(sp, uid,length)
-    unscrambled_index = no_dates(mergesort(date_list))
+    new_order = no_dates(mergesort(date_list))
     positions = list(range(length))
-    for orig_idx in unscrambled_index:
-        current_pos = positions.index(orig_idx)
-        print(f"Moving track at current_pos={current_pos}")
-        sp.playlist_reorder_items(uid, range_start=current_pos, insert_before=0)
-        moved = positions.pop(current_pos)
-        positions.insert(0, moved)
-        time.sleep(0.1)
+    reorder_playlist.reorder_playlist(sp,uid, new_order,positions)

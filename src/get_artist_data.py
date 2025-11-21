@@ -6,7 +6,7 @@ import config
 client_id = config.SPOTIPY_CLIENT_ID
 client_secret = config.SPOTIPY_CLIENT_SECRET
 redirect_uri = config.SPOTIPY_REDIRECT_URI
-
+    
 TOKEN = None
 TOKEN_EXPIRY = 0
 off = False
