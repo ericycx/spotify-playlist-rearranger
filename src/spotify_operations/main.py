@@ -6,7 +6,7 @@ from get_spotify_client import get_spotify_client
 from src.spotify_operations.get_user_playlists import get_minimal_playlists, \
     get_user_playlists_list
 
-if __name__ == "__main__":
+def main():
     sp = get_spotify_client()
     playlists = get_minimal_playlists(sp)
     playlist_names = get_user_playlists_list(sp)
@@ -50,6 +50,7 @@ if __name__ == "__main__":
         else:
             print("please enter a valid playlist")
 
-
+if __name__ == "__main__":
+    main()
 
 
